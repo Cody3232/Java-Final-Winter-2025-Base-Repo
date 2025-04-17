@@ -5,7 +5,7 @@ package org.keyin.user;
 //
 // *//
 public class User {
-    private int userID;
+    private int userId;
     private String userName;
     private String userPassword;
     private String userRole;
