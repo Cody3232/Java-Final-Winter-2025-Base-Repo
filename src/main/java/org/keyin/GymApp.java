@@ -94,7 +94,33 @@ public class GymApp {
 
     // Placeholder for Trainer menu
     private static void showTrainerMenu(Scanner scanner, User user, UserService userService, WorkoutClassService workoutService) {
-        System.out.println("Trainer menu under construction.");
+        int choice;
+
+        do {
+            System.out.println("\n=== Trainer Menu===");
+            System.out.println("1. Add a workou class");
+            System.out.println("2. Back to main menu");
+            System.out.println("Enter your choice: ");
+
+            while (!scanner.hasNextInt()) {
+                System.out.println("Input Error, please enter valid number!");
+                scanner.next();
+            }
+
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    addWorkoutClass (scanner, workoutService);
+                    break;
+                case 2:
+                    System.out.println("Going back to main menu");
+                    break;
+                default:
+                    System.out.println("Invalid choice");    
+            }
+        } while (choice !=2);
     }
 
     // Admin menu with minimal implementation
@@ -117,6 +143,26 @@ public class GymApp {
             System.out.println("User added successfully!");
         } catch (SQLException e) {
             System.out.println("Error adding user: " + e.getMessage());
+        }
+    }
+
+    private static void addWorkoutClass (Scanner scanner, WorkoutClassService workoutService) {
+        System.out.print("Enter name of class: ");
+        String className = scanner.nextLine();
+        System.out.print("Enter name of trainer: ");
+        String trainerName = scanner.nextLine();
+        System.out.print("Enter duration of workout in minutes: ");
+        int duration = Integer.parseInt (scanner.nextLine());
+        System.out.print ("Enter schedule: ");
+        String schedule = scanner.nextLine();
+
+        WorkoutClass workoutClass = new WorkoutClass(className, trainerName, duration, schedule);
+
+        try {
+            workoutService.addWorkoutClass(workoutClass);
+            System.out.println("Your workout class has been successgully added!");
+        } catch (SQLException e) {
+            System.out.println("Error when adding workout class, please try again: " + e.getMessage());
         }
     }
 }
