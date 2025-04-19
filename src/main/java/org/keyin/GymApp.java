@@ -98,7 +98,8 @@ public class GymApp {
             System.out.println("\n Member Menu ");
             System.out.println("1. View all workout classes");
             System.out.println("2. Purchase a membership");
-            System.out.println("3. Back to main menu");
+            System.out.println("3. View my total expense");
+            System.out.println("4. Back to main menu");
             System.out.print("Please enter your choice: ");
 
             while (!scanner.hasNextInt()) {
@@ -107,22 +108,25 @@ public class GymApp {
             }
 
             choice = scanner.nextInt();
-            scanner.nextLine();  // Clear the input buffer
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
                     viewWorkoutClasses(workoutService);
                     break;
                 case 2:
-                    purchaseMembership(scanner, user, membershipService);  // New option for purchasing a membership
+                    purchaseMembership(scanner, user, membershipService);
                     break;
                 case 3:
+                    viewMemberExpenses(user, membershipService);
+                    break;
+                case 4:
                     System.out.println("Returning back to main menu");
                     break;
                 default:
                     System.out.println("Invalid choice");
             }
-        } while (choice != 3);
+        } while (choice != 4);
     }
 
 // Method to handle membership purchase
@@ -213,7 +217,7 @@ public class GymApp {
         String trainerName = scanner.nextLine(); 
         System.out.print("Enter new duration of workout (mins): ");
         int duration = Integer.parseInt(scanner.nextLine());
-        System.out.print("Enter new schedule: ");
+        System.out.print("Enter new schedule (Ex: Mon/Wed/Fri 7:00AM): ");
         String schedule = scanner.nextLine();
 
         WorkoutClass wc = new WorkoutClass(id, className, trainerName, duration, schedule);
