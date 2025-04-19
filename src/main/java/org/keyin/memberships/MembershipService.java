@@ -13,7 +13,5 @@ public class MembershipService {
         dao.addMembership(membership);
     }
     // When you inject in the DAO you have access to all methods in it
-    //MembershipDAO dao = new MembershipDAO();
-
 
 }
