@@ -15,4 +15,12 @@ public class WorkoutClassService {
         return workoutDAO.getAllWorkoutClasses();
     }
 
+    public void updateWorkoutClass(WorkoutClass wc) throws SQLException {
+        workoutDAO.updateWorkoutClass(wc);
+    }
+
+    public void deleteWorkoutClass(int classId) throws SQLException {
+        workoutDAO.deleteWorkoutClass(classId);
+    }
+
 }

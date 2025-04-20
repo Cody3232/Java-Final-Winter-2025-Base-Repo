@@ -45,4 +45,30 @@ public class WorkoutClassDAO {
         }
     return classes; 
     }
+
+    public void updateWorkoutClass(WorkoutClass workoutClass) throws SQLException {
+        String sql = "UPDATE workout_classes " + "SET class_name = ?, trainer_name = ?,          duration_minutes = ?, schedule = ? " + "WHERE class_id =?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, workoutClass.getClassName());
+                pstmt.setString(2, workoutClass.getTrainerName());
+                pstmt.setInt(3, workoutClass.getDurationMinutes());
+                pstmt.setString(4, workoutClass.getSchedule());
+                pstmt.setInt(5, workoutClass.getClassId());
+                pstmt.executeUpdate();
+        }
+    }
+
+    public void deleteWorkoutClass(int classId) throws SQLException {
+        String sql = "DELETE FROM workout_classes WHERE class_id = ? ";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, classId);
+                pstmt.executeUpdate();
+            }
+
+    }
+
 }

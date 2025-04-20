@@ -7,6 +7,15 @@ import java.sql.*;
 
 public class UserDao {
 
+public void deleteUserByUsername(String username) throws SQLException {
+    String sql = "DELETE FROM users WHERE user_name = ?";
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, username);
+        int rows = pstmt.executeUpdate();
+    }
+}
+
     public User getUserByUsername(String username) throws SQLException {
         String sql = "SELECT * FROM users WHERE user_name = ?";
         DriverManager DatabaseConnector;

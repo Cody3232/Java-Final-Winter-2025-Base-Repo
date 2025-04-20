@@ -18,11 +18,20 @@ public class WorkoutClass {
         this.schedule = schedule;
     }
 
-    public WorkoutClass( int classId, String className, String trainerName, int durationMinutes) {
+    public WorkoutClass(int classId, String className, String trainerName, int durationMinutes) {
         this.classId = classId;
         this.className = className;
         this.trainerName = trainerName;
         this.durationMinutes = durationMinutes;        
+    }
+
+// Constructor for pulling from DB
+    public WorkoutClass(int classId, String className, String trainerName, int durationMinutes, String schedule) {
+        this.classId = classId;
+        this.className = className;
+        this.trainerName = trainerName;
+        this.durationMinutes = durationMinutes;
+        this.schedule = schedule;
     }
 
 // Getters/Setters
@@ -30,7 +39,7 @@ public class WorkoutClass {
         return classId;
     }
 
-    public void setClassId (int classId) {
+    public void setClassId(int classId) {
         this.classId = classId;
     }
 
@@ -42,11 +51,11 @@ public class WorkoutClass {
         this.className = className;
     }
 
-    public String getTrainerName () {
+    public String getTrainerName() {
         return trainerName;
     }
 
-    public void setTrainerName (String trainerName) {
+    public void setTrainerName(String trainerName) {
         this.trainerName = trainerName;
     }
 

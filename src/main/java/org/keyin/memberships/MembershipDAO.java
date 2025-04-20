@@ -39,7 +39,7 @@ public class MembershipDAO {
 }
 
 // View total amount
-    public double getTotalExpensesByUser(int userID) throws SQLException {
+    public double getTotalExpensesByUser(int userId) throws SQLException {
         String sql = "SELECT COALESCE(SUM(membership_price), 0) FROM memberships WHERE user_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {

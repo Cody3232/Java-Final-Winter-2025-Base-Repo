@@ -2,7 +2,7 @@ package org.keyin.user;
 
 import org.keyin.database.DatabaseConnection;
 import org.mindrot.jbcrypt.BCrypt;
-
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -31,4 +31,13 @@ public class UserService {
             pstmt.executeUpdate();
              }
     }
+
+    public void deleteUser(String username) throws SQLException {
+        userDao.deleteUserByUsername(username);
+    }
+    
+    public List<User> getAllUsers() throws SQLException {
+        return userDao.getAllUsers();
+    }
+    
 }

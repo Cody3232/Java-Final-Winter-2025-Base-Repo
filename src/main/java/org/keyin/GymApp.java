@@ -129,6 +129,15 @@ public class GymApp {
         } while (choice != 4);
     }
 
+    private static void viewMemberExpenses (User user, MembershipService membershipService) {
+        try {
+            double total = membershipService.getMemberExpenses(user.getUserId());
+            System.out.println("Your total membership cost: $" + total);
+        } catch (SQLException e) {
+            System.out.println("Error retreiving costs: " + e.getMessage());
+        }
+    }
+
 // Method to handle membership purchase
     private static void purchaseMembership(Scanner scanner, User user, MembershipService membershipService) {
         System.out.println("\n=== Purchase a Membership ===");
